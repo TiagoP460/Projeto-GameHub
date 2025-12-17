@@ -1,172 +1,166 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GameHub - Login</title>
+    <title>GameHub - Suas Avaliações de Jogos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="auth-section">
-      <div class="form-container" id="login-form">
-        <form onsubmit="handleLogin(event)">
-          <h1>GameHub</h1>
-          <p class="subtitle">Faça login para continuar</p>
-
-          <div class="input-group">
-            <label for="login-email">Email</label>
-            <input
-              type="email"
-              id="login-email"
-              required
-              placeholder="exemplo@gmail.com"
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="login-password">Senha</label>
-            <input
-              type="password"
-              id="login-password"
-              required
-              placeholder="******"
-            />
-          </div>
-
-          <button type="submit">ENTRAR</button>
-
-          <p class="toggle-link">
-            Não tem uma conta? <a href="#" id="show-signup">Cadastre-se</a>
-          </p>
-        </form>
+    <div id="app">
+      <div id="loading-spinner">
+        <div class="spinner"></div>
       </div>
-      <div class="form-container hidden" id="signup-form">
-        <form onsubmit="handleSignup(event)">
-          <h1>Criar Conta</h1>
-          <div class="input-group">
-            <label for="signup-username">Nome de Usuário</label>
-            <input
-              type="text"
-              id="signup-username"
-              required
-              placeholder="Seu nick"
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="signup-role">Eu sou:</label>
-            <select id="signup-role" required>
-              <option value="player">Jogador</option>
-              <option value="developer">Desenvolvedor</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="signup-email">Email</label>
-            <input
-              type="email"
-              id="signup-email"
-              required
-              placeholder="exemplo@gmail.com"
-            />
-          </div>
-
-          <div class="input-group">
-            <label for="signup-password">Senha</label>
-            <input
-              type="password"
-              id="signup-password"
-              minlength="6"
-              required
-              placeholder="Mínimo 6 caracteres"
-            />
-          </div>
-
-          <button type="submit">CADASTRAR</button>
-
-          <p class="toggle-link">
-            Já tem uma conta? <a href="#" id="show-login">Faça login</a>
+      <div id="login-page" class="page-container" style="display: none">
+        <div class="form-container">
+          <h2>GameHub</h2>
+          <p>Faça login para continuar</p>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Senha</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <div id="login-error" class="error-message"></div>
+          </form>
+          <p class="switch-form-text">
+            Não tem uma conta?
+            <a href="#" id="go-to-signup">Cadastre-se</a>
           </p>
-        </form>
+        </div>
+      </div>
+      <div id="signup-page" class="page-container" style="display: none">
+        <div class="form-container">
+          <h2>Criar Conta</h2>
+          <form id="signup-form">
+            <div class="form-group">
+              <label for="signup-name">Nome de Usuário</label>
+              <input type="text" id="signup-name" required />
+            </div>
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" required />
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Senha (mínimo 6 caracteres)</label>
+              <input type="password" id="signup-password" required />
+            </div>
+            <button type="submit" class="btn btn-success">Cadastrar</button>
+            <div id="signup-error" class="error-message"></div>
+          </form>
+          <p class="switch-form-text">
+            Já tem uma conta?
+            <a href="#" id="go-to-login">Faça login</a>
+          </p>
+        </div>
+      </div>
+      <div id="main-content" style="display: none">
+        <header>
+          <nav>
+            <a href="#" id="nav-logo">GameHub</a>
+            <div>
+              <button id="nav-catalog">Catálogo</button>
+              <button id="nav-community">Reviews da Comunidade</button>
+              <button id="nav-profile">Perfil</button>
+              <button id="logout-button" class="btn-danger">Sair</button>
+            </div>
+          </nav>
+        </header>
+
+        <main>
+          <h1>Catálogo de Jogos</h1>
+          <div class="game-grid">
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Counter-Strike+2"
+                alt="Counter-Strike 2"
+              />
+              <div class="game-card-title">Counter-Strike 2</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Elden+Ring"
+                alt="Elden Ring"
+              />
+              <div class="game-card-title">Elden Ring</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Forza+Horizon+5"
+                alt="Forza Horizon 5"
+              />
+              <div class="game-card-title">Forza Horizon 5</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=God+of+War"
+                alt="God of War"
+              />
+              <div class="game-card-title">God of War</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=GTA+V"
+                alt="Grand Theft Auto V"
+              />
+              <div class="game-card-title">Grand Theft Auto V</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Hollow+Knight"
+                alt="Hollow Knight"
+              />
+              <div class="game-card-title">Hollow Knight</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/2d3748/9ca3af?text=Image+Not+Found"
+                alt="Minecraft"
+              />
+              <div class="game-card-title">Minecraft</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Red+Dead+2"
+                alt="Red Dead Redemption 2"
+              />
+              <div class="game-card-title">Red Dead Redemption 2</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=Resident+Evil+4"
+                alt="Resident Evil 4"
+              />
+              <div class="game-card-title">Resident Evil 4</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=The+Last+of+Us"
+                alt="The Last of Us Part I"
+              />
+              <div class="game-card-title">The Last of Us Part I</div>
+            </div>
+            <div class="game-card">
+              <img
+                src="https://placehold.co/600x400/1a202c/ffffff?text=The+Witcher+3"
+                alt="The Witcher 3: Wild Hunt"
+              />
+              <div class="game-card-title">The Witcher 3: Wild Hunt</div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
-    <div id="dashboard-section" class="hidden">
-      <header class="dashboard-header">
-        <h2>GameHub</h2>
-        <div class="user-info">
-          <span id="welcome-msg">Bem-vindo, Usuário</span>
-          <button onclick="logout()" class="btn-logout">Sair</button>
-        </div>
-      </header>
-
-      <main class="catalog-container">
-        <h3>Jogos Disponíveis para Avaliar</h3>
-
-        <div class="games-grid">
-          <div class="game-card">
-            <div class="game-placeholder-img"></div>
-            <h4>Jogo 1</h4>
-            <button class="btn-action">Avaliar Jogo</button>
-          </div>
-          <div class="game-card">
-            <div class="game-placeholder-img"></div>
-            <h4>Jogo 2</h4>
-            <button class="btn-action">Avaliar Jogo</button>
-          </div>
-          <div class="game-card">
-            <div class="game-placeholder-img"></div>
-            <h4>Jogo 3</h4>
-            <button class="btn-action">Avaliar Jogo</button>
-          </div>
-        </div>
-      </main>
-    </div>
-    <script>
-      const loginForm = document.getElementById("login-form");
-      const signupForm = document.getElementById("signup-form");
-      const authSection = document.getElementById("auth-section");
-      const dashboardSection = document.getElementById("dashboard-section");
-      const welcomeMsg = document.getElementById("welcome-msg");
-      document.getElementById("show-signup").addEventListener("click", (e) => {
-        e.preventDefault();
-        loginForm.classList.add("hidden");
-        signupForm.classList.remove("hidden");
-      });
-
-      document.getElementById("show-login").addEventListener("click", (e) => {
-        e.preventDefault();
-        signupForm.classList.add("hidden");
-        loginForm.classList.remove("hidden");
-      });
-      function handleLogin(e) {
-        e.preventDefault();
-        const email = document.getElementById("login-email").value;
-        enterDashboard("Jogador (Visitante)");
-      }
-      function handleSignup(e) {
-        e.preventDefault();
-        const username = document.getElementById("signup-username").value;
-        const role = document.getElementById("signup-role").value;
-
-        let roleText = role === "developer" ? "Desenvolvedor" : "Jogador";
-
-        alert(`Conta criada com sucesso como ${roleText}!`);
-        enterDashboard(`${username} (${roleText})`);
-      }
-      function enterDashboard(userNameText) {
-        authSection.classList.add("hidden");
-        dashboardSection.classList.remove("hidden");
-        welcomeMsg.textContent = `Olá, ${userNameText}`;
-      }
-      function logout() {
-        dashboardSection.classList.add("hidden");
-        authSection.classList.remove("hidden");
-        loginForm.classList.remove("hidden");
-        signupForm.classList.add("hidden");
-        document
-          .querySelectorAll("input")
-          .forEach((input) => (input.value = ""));
-      }
-    </script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
